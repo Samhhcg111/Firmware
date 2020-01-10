@@ -11,9 +11,9 @@
     <arg name="Y" default="0"/>
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
-    <arg name="vehicle" default="iris"/>
+    <arg name="vehicle" default="plane"/>
     <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/plane_cam/plane_cam.sdf"/>
 
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
@@ -46,9 +46,12 @@
     </include>
     <!-- MAVROS -->
     <include file="$(find mavros)/launch/px4.launch">
+        <env name="PX4_SIM_MODEL" value="$(arg vehicle)" />
         <!-- GCS link is provided by SITL -->
         <arg name="gcs_url" value=""/>
         <arg name="fcu_url" value="$(arg fcu_url)"/>
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
+    <node type="rviz" name="rviz" pkg="rviz" args="-d /home/sam/.rviz/my.rviz">
+    </node>
 </launch>
