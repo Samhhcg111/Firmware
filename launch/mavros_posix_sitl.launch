@@ -5,25 +5,25 @@
     <!-- vehicle pose -->
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
-    <arg name="z" default="0"/>
+    <arg name="z" default="0.1"/>
     <arg name="R" default="0"/>
     <arg name="P" default="0"/>
     <arg name="Y" default="0"/>
     <!-- vehicle model and world -->
     <arg name="est" default="ekf2"/>
-    <arg name="vehicle" default="plane"/>
+    <arg name="vehicle" default="tiltrotor"/>
     <arg name="world" default="$(find mavlink_sitl_gazebo)/worlds/empty.world"/>
-    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/plane_cam/plane_cam.sdf"/>
+    <arg name="sdf" default="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
 
     <!-- gazebo configs -->
     <arg name="gui" default="true"/>
     <arg name="debug" default="false"/>
     <arg name="verbose" default="false"/>
     <arg name="paused" default="false"/>
-    <arg name="respawn_gazebo" default="false"/>
+    <arg name="respawn_gazebo" default="true"/>
     <!-- MAVROS configs -->
     <arg name="fcu_url" default="udp://:14540@localhost:14557"/>
-    <arg name="respawn_mavros" default="false"/>
+    <arg name="respawn_mavros" default="true"/>
     <!-- PX4 configs -->
     <arg name="interactive" default="true"/>
     <!-- PX4 SITL and Gazebo -->
@@ -52,6 +52,6 @@
         <arg name="fcu_url" value="$(arg fcu_url)"/>
         <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
     </include>
-    <node type="rviz" name="rviz" pkg="rviz" args="-d /home/sam/.rviz/my.rviz">
-    </node>
+    <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d /home/sam/.rviz/my.rviz"> -->
+    <!-- </node> -->
 </launch>
